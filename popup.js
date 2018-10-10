@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
 
 function addEvent() {
   
-    var timezone = 800;
+//    var timezone = 800;
     var timeformat = "0000";
     var title = document.getElementById('title').value;
     var message = document.getElementById('message').value;
@@ -66,7 +66,7 @@ function addEvent() {
     }else if(endDate === ""){
       endDate = startDate;
     }
-    
+/*    
     //Time convert
     if(parseInt(startTime)>=800){
       startTime = parseInt(startTime) -timezone;
@@ -80,7 +80,7 @@ function addEvent() {
       endTime = parseInt(endTime) +2*timezone;
       endDate = parseInt(endDate) -1;
     }
-  
+*/  
     startTime= startTime.toString();
     startTime = timeformat.substring(0, timeformat.length - startTime.length) + startTime;
 
@@ -97,7 +97,7 @@ function addEvent() {
     location = location.replace(/&/g, "%26");
     
     
-    var url = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + title + "&location=" + location + "&dates=" + start + "Z/" + end + "Z&trp=true&details=" + message;
+    var url = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + title + "&location=" + location + "&dates=" + start + "/" + end + "&trp=true&details=" + message;
     
     //url = url.replace(/&/g, "%26");
     url = url.replace(/#/g, "%23");
