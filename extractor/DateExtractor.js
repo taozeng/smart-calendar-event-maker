@@ -317,6 +317,15 @@ function extractDifferentFormat(){
 				continue;
 			}
 		}
+		//Nov. 22, 1992
+		if (dateExtract("mmm+.+DD+,+YYYY",i)){
+			var tempMonth = shortMonth.indexOf(taggedWords[i][0].toLowerCase()) + 1;
+			if (isValidDate(taggedWords[i+2][0]+"/"+ tempMonth + "/" + taggedWords[i+4][0])){
+				dateArr.push(new MyDate(new Date( taggedWords[i+4][0] ,tempMonth-1, taggedWords[i+2][0]),i,i+4,20));
+				i=i+4;
+				continue;
+			}
+		}
 		//22 November
 		if (dateExtract("DD+MMM",i)){
 			var tempMonth = fullMonth.indexOf(taggedWords[i+1][0].toLowerCase()) + 1;
@@ -373,6 +382,15 @@ function extractDifferentFormat(){
 				dateArr.push(new MyDate(new Date( emailDate.getFullYear() ,tempMonth-1, taggedWords[i+1][0]),i,i+1,20));
 				dateArr[dateArr.length-1].dateFormat = 3;
 				i=i+1;
+				continue;
+			}
+		}
+		//Nov. 22
+		if (dateExtract("mmm+.+DD",i)){
+			var tempMonth = shortMonth.indexOf(taggedWords[i][0].toLowerCase()) + 1;
+			if (isValidDate(taggedWords[i+2][0]+"/"+ tempMonth + "/" + emailDate.getFullYear())){
+				dateArr.push(new MyDate(new Date( emailDate.getFullYear() ,tempMonth-1, taggedWords[i+2][0]),i,i+2,20));
+				i=i+2;
 				continue;
 			}
 		}
