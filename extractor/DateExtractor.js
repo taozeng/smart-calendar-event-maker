@@ -2,7 +2,7 @@ var fullMonth = ["january", "february", "march", "april", "may", "june", "july",
 var shortMonth = ["jan","feb","mar","apr", "may", "jun", "jul", "aug","sep","oct","nov","dec"];
 var fullWeekday = ["sunday","monday", "tuesday", "wednesday","thursday","friday","saturday"];
 var shortWeekday = ["sun","mon", "tue", "wed","thu","fri","sat"];
-var holiday = [["silent night", "12/24"],["new year ' s day","1/1"],["valentine ' s day","2/14"], ["april fools day","4/1"],["labour day","5/1"],["hong kong special administrative region establishment day","7/1"],["national day","10/1"],["halloween","10/31"],["christmas eve","12/24"],["christmas", "12/25"],["boxing day","12/26"],["new year ' s eve","12/31"]]; //support multiple word
+var holiday = [["silent night", "12/24"],["new year ' s day","1/1"],["valentine ' s day","2/14"],["patrick ' s day","3/17"],["april fools day","4/1"],["canada day","7/1"],["independence day","7/4"],["national day","10/1"],["halloween","10/31"],["veterans day","11/11"],["remembrance day","11/11"],["christmas eve","12/24"],["christmas", "12/25"],["boxing day","12/26"],["new year ' s eve","12/31"]]; //support multiple word
 var relativeKeyword = ["this", "next", "last", "coming"];  // support one word only now
 var otherKeyword = ["tomorrow", "today"]; //support one word only
 //changed
