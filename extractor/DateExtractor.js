@@ -121,33 +121,8 @@ DateExtractor.prototype.extractDate = function(){
 
 //changed
 function extractDifferentFormat(){
-		for(var i=0; i<taggedWords.length;i++){	
+	for(var i=0; i<taggedWords.length;i++){	
 		// extract different kind of date format and push it to an array
-		//22/11/1992
-		if (dateExtract("DD+/+MM+/+YYYY",i)){
-			if (isValidDate(taggedWords[i][0]+"/"+ taggedWords[i+2][0] + "/" + taggedWords[i+4][0])){
-				dateArr.push( new MyDate (new Date (taggedWords[i+4][0],taggedWords[i+2][0]-1, taggedWords[i][0]),i, i+4,20));
-				i=i+4;
-				continue;
-			}
-		}	
-		
-		//22-11-1992
-		if (dateExtract("DD+-+MM+-+YYYY",i)){
-			if (isValidDate(taggedWords[i][0]+"/"+ taggedWords[i+2][0] + "/" + taggedWords[i+4][0])){
-				dateArr.push( new MyDate (new Date( taggedWords[i+4][0],taggedWords[i+2][0]-1, taggedWords[i][0]),i,i+4,20));
-				i=i+4;
-				continue;
-			}
-		}
-		//22.11.1992
-		if (dateExtract("DD+.+MM+.+YYYY",i)){
-			if (isValidDate(taggedWords[i][0]+"/"+ taggedWords[i+2][0] + "/" + taggedWords[i+4][0])){
-				dateArr.push(new MyDate(new Date( taggedWords[i+4][0],taggedWords[i+2][0]-1, taggedWords[i][0]),i,i+4,20));
-				i=i+4;
-				continue;
-			}
-		}
 		//11/22/1992
 		if (dateExtract("MM+/+DD+/+YYYY",i)){
 			if (isValidDate(taggedWords[i+2][0]+"/"+ taggedWords[i][0] + "/" + taggedWords[i+4][0])){
@@ -173,6 +148,33 @@ function extractDifferentFormat(){
 				continue;
 			}
 		}
+		
+		//22/11/1992
+		if (dateExtract("DD+/+MM+/+YYYY",i)){
+			if (isValidDate(taggedWords[i][0]+"/"+ taggedWords[i+2][0] + "/" + taggedWords[i+4][0])){
+				dateArr.push( new MyDate (new Date (taggedWords[i+4][0],taggedWords[i+2][0]-1, taggedWords[i][0]),i, i+4,20));
+				i=i+4;
+				continue;
+			}
+		}	
+		
+		//22-11-1992
+		if (dateExtract("DD+-+MM+-+YYYY",i)){
+			if (isValidDate(taggedWords[i][0]+"/"+ taggedWords[i+2][0] + "/" + taggedWords[i+4][0])){
+				dateArr.push( new MyDate (new Date( taggedWords[i+4][0],taggedWords[i+2][0]-1, taggedWords[i][0]),i,i+4,20));
+				i=i+4;
+				continue;
+			}
+		}
+		//22.11.1992
+		if (dateExtract("DD+.+MM+.+YYYY",i)){
+			if (isValidDate(taggedWords[i][0]+"/"+ taggedWords[i+2][0] + "/" + taggedWords[i+4][0])){
+				dateArr.push(new MyDate(new Date( taggedWords[i+4][0],taggedWords[i+2][0]-1, taggedWords[i][0]),i,i+4,20));
+				i=i+4;
+				continue;
+			}
+		}
+
 		//1992/11/22
 		if (dateExtract("YYYY+/+MM+/+DD",i)){
 			if (isValidDate(taggedWords[i+4][0]+"/"+ taggedWords[i+2][0] + "/" + taggedWords[i][0])){
@@ -197,14 +199,7 @@ function extractDifferentFormat(){
 				continue;
 			}
 		}
-		//22/11
-		if (dateExtract("DD+/+MM",i)){
-			if (isValidDate(taggedWords[i][0]+"/"+ taggedWords[i+2][0] + "/" + emailDate.getFullYear())){
-				dateArr.push(new MyDate(new Date( emailDate.getFullYear(),taggedWords[i+2][0]-1, taggedWords[i][0]),i,i+2,20));
-				i=i+2;
-				continue;
-			}
-		}
+		
 		//11/22
 		if (dateExtract("MM+/+DD",i)){
 			if (isValidDate(taggedWords[i+2][0]+"/"+ taggedWords[i][0] + "/" + emailDate.getFullYear())){
@@ -213,6 +208,15 @@ function extractDifferentFormat(){
 				continue;
 			}
 		}
+		//22/11
+		if (dateExtract("DD+/+MM",i)){
+			if (isValidDate(taggedWords[i][0]+"/"+ taggedWords[i+2][0] + "/" + emailDate.getFullYear())){
+				dateArr.push(new MyDate(new Date( emailDate.getFullYear(),taggedWords[i+2][0]-1, taggedWords[i][0]),i,i+2,20));
+				i=i+2;
+				continue;
+			}
+		}
+
 		//22nd November,1992
 		if (dateExtract("DD+pp+MMM+,+YYYY",i)){
 			var tempMonth = fullMonth.indexOf(taggedWords[i+2][0].toLowerCase()) + 1;
