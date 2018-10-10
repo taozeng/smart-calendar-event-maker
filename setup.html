@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <style>
+		
+            img{
+				vertical-align: text-bottom;
+			}
+			body {
+                min-width: 375px;
+                overflow-x: hidden;
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+				margin: 2px;
+            }
+			div#header{
+		    	background-color:#207cca;
+		    	padding: 5px 5px 5px 5px;
+				margin: 0;
+	    	}
+	    div#reminder{
+		    
+				font-size: 11px;
+	    	}
+			select#selectField{
+				position: relative;
+				right: 0px;
+				background: rgba(50, 50, 50, 0.1);
+        border:3px solid #EAEAEA;
+				outline: none;
+			}
+			button{
+				position: relative;
+				width: 100px;
+				height: 30px;
+				font-weight: bold;
+				border:2px solid #207cca;
+				background-color:#207cca;
+				color:#fafafa;
+				outline: none;
+			}
+			button:hover{
+				border:2px solid #F90;
+				background-color: #F90;
+				color:#fafafa;
+			}
+			table{
+				position: relative;
+				right: -3px;
+				top: 3px;
+			}
+			td#message{
+				font-size: 9px;
+				font-style: italic;
+				vertical-align: bottom;
+				color: #999;
+			}
+			hr{
+				position: relative;
+				top: 15px;
+				padding: 0px 0px;
+			}
+			p{
+				position: relative;
+				right: -5px;
+			}
+			div#guide{
+				position: relative;
+				top: 13px;
+			}
+        	.TitleStyle {
+				position: relative;
+				right: -5px;
+				font-family: Verdana, Geneva, sans-serif;
+				background-image: none;
+				color: #FFFFFF;
+				font-size: large;
+				font-weight: bolder;
+				word-spacing: normal;
+				position: relative;
+				top: 0px;
+			}
+        	.Subtitle {
+				position: relative;
+				right: -5px;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+			}
+        </style>
+        <script src="setup.js"></script>
+        <script src="fileIO.js"></script>
+    </head>
+    <body>
+    <div id= "header">
+      <h1 align="justify" class="TitleStyle"><img src="assets/calendar2.png" width="24" height="24">&nbsp; Smart Calendar Event Maker</h1>
+    </div>
+    <h2 class="Subtitle">Location History:</h2>
+    <p>
+        <select id="selectField" size="5" style="width: 97%">
+        </select>
+        <br>
+      </p>
+      
+    <table width="250" border="0">
+        <tr>
+          <td width="80"><button id="clear">Clear History</button></td>
+          <td width="100"id="message"></td>
+        </tr>
+    </table>
+<hr>
+<div id= "guide">
+<p class="Subtitle">How to use:</p>
+<p>1. Highlight the email content. <br>
+2. Right click and select "Create new event". <br>
+3. Modify the information if necessary. <br>
+4. Click "Confirm" and save it in Google Calendar. <br>
+ <br>
+<div id="reminder"><p>
+- Better experience in Gmail, Hotmail and Yahoo Mail <br>
+- Language of Email content: English <br>
+- Only support single event creation <br>
+- For more information: <a href="http://sceventmaker.blogspot.hk">http://sceventmaker.blogspot.hk/</a><br>
+<br>
+</p>
+</div> 
+</p>
+</div>
+    </body>
+</html>
