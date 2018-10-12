@@ -1,7 +1,7 @@
 {
    "background": {
       "persistent": false,
-      "scripts": [ "background.js", "editable_select.js", "extractor/getDate.js", "extractor/getVenue.js", "extractor/lexer.js", "extractor/lexicon.js", "extractor/POSTagger.js", "extractor/DateExtractor.js", "extractor/VenueExtractor.js", "fileIO.js" ]
+      "scripts": [ "background.js", "editable_select.js", "extractor/getDate.js", "extractor/getAddress.js", "extractor/getVenue.js", "extractor/lexer.js", "extractor/lexicon.js", "extractor/POSTagger.js", "extractor/DateExtractor.js", "extractor/VenueExtractor.js", "fileIO.js" ]
    },
    "browser_action": {
       "default_icon": "assets/icon_16.png",

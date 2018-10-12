@@ -57,9 +57,7 @@ function CreateTab(){
   //details.maildate = maildate;
   var locationArray = [];
   var scroeArray = [];
-  details.location_0 ="";
-  details.location_1 ="";
-  details.location_2 ="";
+  details.location = [];
   
   chrome.storage.local.get('location', function (result) {
       
@@ -76,20 +74,27 @@ function CreateTab(){
       tempMailtext = tempMailtext.replace(/\s+/g, " ");
       tempMailtext = tempMailtext.replace(/：/g, ":");
       
-      
-      //window.alert(tempMailtext);
+      var i=0;
+      details.location[0]="";
+      var addressResult=getAddress(mailtext);
+      if (addressResult!=undefined){
+        for(;i<addressResult.length;i++)
+          details.location[i]=addressResult[i];
+      }
+
+      //window.alert(tempMailtext);      
       var locationResult = getVenue(tempMailtext, locationArray, scroeArray);
       
       if(locationResult[0] !== undefined &&locationResult[0].venue !== ""){
-        details.location_0=locationResult[0].venue;
+        details.location[i++]=locationResult[0].venue;
         //Error first array = ""
       }
       if(locationResult.length>1){
-        details.location_1=locationResult[1].venue;
+        details.location[i++]=locationResult[1].venue;
         
       }
       if(locationResult.length>2){
-        details.location_2=locationResult[2].venue;
+        details.location[i++]=locationResult[2].venue;
       }
     }
     

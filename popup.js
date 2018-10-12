@@ -14,8 +14,12 @@ chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
         document.getElementById('startTime').value = details.startTime;
         document.getElementById('endTime').value = details.endTime;
         
-        document.getElementById('location').value = details.location_0;
-        var selectBoxOptions = details.location_0 + ";" +details.location_1 + ";"+details.location_2;
+        document.getElementById('location').value = details.location[0];
+        var selectBoxOptions = details.location[0];
+        for (var i=1;i<details.location.length;i++) {
+          if(details.location[i]==undefined) break;
+          selectBoxOptions += ";" +details.location[i];
+        }
         document.getElementById('location').setAttribute("selectBoxOptions", selectBoxOptions);
         
         createEditableSelect(document.forms[0].location);
