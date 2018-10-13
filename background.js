@@ -84,17 +84,10 @@ function CreateTab(){
 
       //window.alert(tempMailtext);      
       var locationResult = getVenue(tempMailtext, locationArray, scroeArray);
-      
-      if(locationResult[0] !== undefined &&locationResult[0].venue !== ""){
-        details.location[i++]=locationResult[0].venue;
-        //Error first array = ""
-      }
-      if(locationResult.length>1){
-        details.location[i++]=locationResult[1].venue;
-        
-      }
-      if(locationResult.length>2){
-        details.location[i++]=locationResult[2].venue;
+      var whitespace = /\s+/;
+      for(var j=0;j<locationResult.length&&i<6;j++) {
+        if (whitespace.test(locationResult[j].venue))
+          details.location[i++]=locationResult[j].venue;
       }
     }
     
