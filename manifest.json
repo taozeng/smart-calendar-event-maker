@@ -1,21 +1,38 @@
 {
-   "background": {
-      "persistent": false,
-      "scripts": [ "background.js", "editable_select.js", "extractor/getDate.js", "extractor/getAddress.js", "extractor/getVenue.js", "extractor/lexer.js", "extractor/lexicon.js", "extractor/POSTagger.js", "extractor/DateExtractor.js", "extractor/VenueExtractor.js", "fileIO.js" ]
-   },
-   "browser_action": {
-      "default_icon": "assets/icon_16.png",
-      "default_popup": "setup.html"
-   },
-   "description": "Add event to google calendar",
-   "icons": {
-      "128": "assets/icon_128.png",
-      "16": "assets/icon_16.png",
-      "48": "assets/icon_32.png"
-   },
-   "manifest_version": 2,
-   "name": "Smart Calendar Event Maker Plus",
-   "permissions": [ "contextMenus", "activeTab", "alarms", "storage" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.0"
+    "background": {
+        "persistent": false,
+        "scripts": [
+            "background.js",
+            "editable_select.js",
+            "extractor/getDate.js",
+            "extractor/getAddress.js",
+            "extractor/getVenue.js",
+            "extractor/lexer.js",
+            "extractor/lexicon.js",
+            "extractor/POSTagger.js",
+            "extractor/DateExtractor.js",
+            "extractor/VenueExtractor.js",
+            "fileIO.js"
+        ]
+    },
+    "browser_action": {
+        "default_icon": "assets/icon_16.png",
+        "default_popup": "setup.html"
+    },
+    "description": "Add event to google calendar",
+    "icons": {
+        "128": "assets/icon_128.png",
+        "16": "assets/icon_16.png",
+        "48": "assets/icon_32.png"
+    },
+    "manifest_version": 2,
+    "name": "Smart Calendar Event Maker Plus",
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "alarms",
+        "storage"
+    ],
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "version": "1.0"
 }

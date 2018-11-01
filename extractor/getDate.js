@@ -13,14 +13,14 @@ function getDate(text, mailDate) {
 	" policy, which have seated him on the present throne, can entertain little"+
 	" doubt but that he is  25th Dec seriously bent on seizing and adding the sceptre of"+
 	" Germany to the crowns of France and Italy 7/12/2011.";*/
-  //clearHistory();
-  //saveHistory("mk");
+	//clearHistory();
+	//saveHistory("mk");
 	var words = new Lexer().lex(text);
 	var inputTaggedWords = new POSTagger().tag(words);
 	var result = {};
-  
-	var dateExtractor = new DateExtractor(inputTaggedWords, mailDate); 
-  
+
+	var dateExtractor = new DateExtractor(inputTaggedWords, mailDate);
+
 	result = dateExtractor.extractDate();
 	//getHistory();
 	return result;

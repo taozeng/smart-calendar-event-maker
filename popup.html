@@ -1,7 +1,8 @@
 <html>
-  <head>
-    <style>
-      *{
+
+<head>
+  <style>
+    *{
 	      margin:0;
 	      padding:0;
 	    }
@@ -129,56 +130,59 @@
 	top: 0px;
       }
     </style>
-    <script src="popup.js"></script>
-    <script src="editable_select.js"></script>
-    <script src="fileIO.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-	  <div id= "header">
-      <h1 align="justify" class="TitleStyle"> <img src="assets/calendar2.png" width="32" height="32">&nbsp; Smart Calendar Event Maker</h1>
-    </div>
-    <div id= "form">
+  <script src="popup.js"></script>
+  <script src="editable_select.js"></script>
+  <script src="fileIO.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+  <div id="header">
+    <h1 align="justify" class="TitleStyle"> <img src="assets/calendar2.png" width="32" height="32">&nbsp; Smart
+      Calendar Event Maker</h1>
+  </div>
+  <div id="form">
     <form id="addevent">
       <p>
-      <label for="title"><strong> Title</strong></label>
-      :
-      <br />
-      <input type="text" id="title" name="title" size="50" value="" /></p>
-      
-  	  <p><label for="message"><strong><br>
-  	    Description</strong></label>
-      :
-      <br />
-      <textarea type="text" id="message" name="message" cols="65" rows="10" ></textarea></p>
-  
+        <label for="title"><strong> Title</strong></label>
+        :
+        <br />
+        <input type="text" id="title" name="title" size="50" value="" /></p>
+
+      <p><label for="message"><strong><br>
+            Description</strong></label>
+        :
+        <br />
+        <textarea type="text" id="message" name="message" cols="65" rows="10"></textarea></p>
+
       <p><label for="location"><strong><br>
-        Location</strong></label>
-      :
-      <br />
-      <input type="text" id="location" name="location" size="50" value="" /></p>
-  
+            Location</strong></label>
+        :
+        <br />
+        <input type="text" id="location" name="location" size="50" value="" /></p>
+
       <p><label for="start"><strong><br>
-        Start</strong></label>
-      :
-      <br />
-      <input type="date" id="startDate" name="startDate"  value=""/>
-      <input type="time" id="startTime" name="startTime"  value=""/>
+            Start</strong></label>
+        :
+        <br />
+        <input type="date" id="startDate" name="startDate" value="" />
+        <input type="time" id="startTime" name="startTime" value="" />
       </p>
-      
-  		<p><label for="end"><strong><br>
-	    End</strong></label>
-  		:
-  		<br />
-      <input type="date" id="endDate" name="endDate" value="" />
-      <input type="time" id="endTime" name="endTime" value="" /></p>
-	  <p>&nbsp;</p>
-  	  
-  	  <p>
-      <input id="add" type="submit" value="Confirm" />
-      <span id="status-display"></span>
+
+      <p><label for="end"><strong><br>
+            End</strong></label>
+        :
+        <br />
+        <input type="date" id="endDate" name="endDate" value="" />
+        <input type="time" id="endTime" name="endTime" value="" /></p>
+      <p>&nbsp;</p>
+
+      <p>
+        <input id="add" type="submit" value="Confirm" />
+        <span id="status-display"></span>
       </p>
     </form>
-	</div>
-  </body>
+  </div>
+</body>
+
 </html>
