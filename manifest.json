@@ -13,10 +13,9 @@
       "16": "assets/icon_16.png",
       "48": "assets/icon_32.png"
    },
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsrqsWlCcb4l7+KvG7C5KUo3gBS2K0dEcnpS0ErqV+KaFUXa81WpVIL5I+3FJ+rrxdzrC8EqLdUZxtHm9fhtXIyiBcr+6fSRsuuR0kwHK7dVPMOgW+YaSlgnJhoeyWAbSdjbKkcPTEfkepU6xVeR3rQ4F5Zy8u6mJczfJflvt3rqkONxVIeMMepS4N0QY/26iBnXHYiBid+SSQRwHoH/jD9PYroAmiCOdfNmHyzL7lObK9b5Z3U8koqaGszrRPp9o8FOAA/Cd8RdrgjoS8imdW2Kh50tJRlYGXdAM0iq3X9S065Y4iaOal2ZPt8gqpsYLA0NfI/i2nHGVddx4vMt+KwIDAQAB",
    "manifest_version": 2,
-   "name": "Smart Calendar Event Maker",
-   "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "alarms", "storage" ],
+   "name": "Smart Calendar Event Maker Plus",
+   "permissions": [ "contextMenus", "activeTab", "alarms", "storage" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "2.0"
+   "version": "1.0"
 }
