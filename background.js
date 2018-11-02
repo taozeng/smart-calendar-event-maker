@@ -44,8 +44,11 @@ function onClickHandler(info, tab) {
   details.id = info.menuItemId;
   details.pageUrl = info.pageUrl;
 
-  chrome.alarms.create({ delayInMinutes: 0.01 });
+  // chrome.alarms.create({ delayInMinutes: 0.01 });
   //CreateTab(details);
+  setTimeout(function() {
+    CreateTab(details);
+  }, 200);
 }
 
 
@@ -159,9 +162,9 @@ function CreateTab() {
 }
 
 
-chrome.alarms.onAlarm.addListener(function (alarm) {
-  CreateTab();
-});
+// chrome.alarms.onAlarm.addListener(function (alarm) {
+//   CreateTab();
+// });
 
 
 
