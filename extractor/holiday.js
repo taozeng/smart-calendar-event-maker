@@ -4,7 +4,8 @@
 //  month(January is 1), week(first week is 1) and weekday (Monday is 1, Saturday is 6, Sunday is 7)
 var holidays = {
     "new year ' s day": "1,1",
-    "martin luther king jr day": "1,3,1",
+    "martin luther king jr . day": "1,3,1",
+    "martin luther king day": "1,3,1",
     "valentine ' s day": "2,14",
     "president ' s day": "2,3,1",
     "patrick ' s day": "3,17",
