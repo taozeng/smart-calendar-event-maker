@@ -46,7 +46,7 @@ function onClickHandler(info, tab) {
 
   // chrome.alarms.create({ delayInMinutes: 0.01 });
   //CreateTab(details);
-  setTimeout(function() {
+  setTimeout(function () {
     CreateTab(details);
   }, 200);
 }
@@ -62,43 +62,25 @@ function CreateTab() {
   var scroeArray = [];
   details.location = [];
 
-  chrome.storage.local.get('location', function (result) {
-
-    if (result !== undefined) {
-      var location = result.location + "";
-      if (location.indexOf("$") !== -1) {
-        var tempArray = location.split("$");
-        if (tempArray[0] !== undefined) {
-          locationArray = tempArray[0].split("#");
-          scroeArray = tempArray[1].split("#");
-        }
-      }
-      var tempMailtext = mailtext.replace(/\n/g, " pppppp ");
-      tempMailtext = tempMailtext.replace(/\s+/g, " ");
-      tempMailtext = tempMailtext.replace(/：/g, ":");
-
-      var i = 0;
-      details.location[0] = "";
-      var addressResult = getAddress(mailtext);
-      if (addressResult != undefined) {
-        for (; i < addressResult.length; i++)
-          details.location[i] = addressResult[i];
-      }
-
-      //window.alert(tempMailtext);      
-      var locationResult = getVenue(tempMailtext, locationArray, scroeArray);
-      var whitespace = /\s+/;
-      for (var j = 0; j < locationResult.length && i < 6; j++) {
-        if (whitespace.test(locationResult[j].venue))
-          details.location[i++] = locationResult[j].venue;
-      }
-    }
-
-  });
-
   var tempMailtext = mailtext.replace(/\n/g, " pppppp ");
   tempMailtext = tempMailtext.replace(/\s+/g, " ");
-  tempMailtext = tempMailtext.replace(/"："/g, ":");
+  tempMailtext = tempMailtext.replace(/：/g, ":");
+
+  var i = 0;
+  details.location[0] = "";
+  var addressResult = getAddress(mailtext);
+  if (addressResult != undefined) {
+    for (; i < addressResult.length; i++)
+      details.location[i] = addressResult[i];
+  }
+
+  //window.alert(tempMailtext);      
+  var locationResult = getVenue(tempMailtext, locationArray, scroeArray);
+  var whitespace = /\s+/;
+  for (var j = 0; j < locationResult.length && i < 6; j++) {
+    if (whitespace.test(locationResult[j].venue))
+      details.location[i++] = locationResult[j].venue;
+  }
 
   if (Object.prototype.toString.call(maildate) === "[object Date]") {
     // it is a date
@@ -158,9 +140,7 @@ function CreateTab() {
         chrome.runtime.sendMessage({ details: details }, function (response) { });
       });
   });
-
 }
-
 
 // chrome.alarms.onAlarm.addListener(function (alarm) {
 //   CreateTab();

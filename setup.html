@@ -9,7 +9,6 @@
 		body {
 			min-width: 375px;
 			overflow-x: hidden;
-			font-family: Arial, sans-serif;
 			font-size: 12px;
 			margin: 2px;
 		}
@@ -82,7 +81,6 @@
 		.TitleStyle {
 			position: relative;
 			right: -5px;
-			font-family: Verdana, Geneva, sans-serif;
 			background-image: none;
 			color: #FFFFFF;
 			font-size: large;
@@ -95,13 +93,10 @@
 		.Subtitle {
 			position: relative;
 			right: -5px;
-			font-family: Arial, Helvetica, sans-serif;
 			font-size: 12px;
 			font-weight: bold;
 		}
 	</style>
-	<script src="setup.js"></script>
-	<script src="fileIO.js"></script>
 </head>
 
 <body>
@@ -109,32 +104,19 @@
 		<h1 align="justify" class="TitleStyle"><img src="assets/calendar2.png" width="24" height="24">&nbsp; Smart Calendar
 			Event Maker</h1>
 	</div>
-	<h2 class="Subtitle">Location History:</h2>
-	<p>
-		<select id="selectField" size="5" style="width: 97%">
-		</select>
-		<br>
-	</p>
-
-	<table width="250" border="0">
-		<tr>
-			<td width="80"><button id="clear">Clear History</button></td>
-			<td width="100" id="message"></td>
-		</tr>
-	</table>
-	<hr>
 	<div id="guide">
 		<p class="Subtitle">How to use:</p>
-		<p>1. Highlight the email content. <br>
+		<p>1. Highlight the email content with the location and time information. <br>
 			2. Right click and select "Create new event". <br>
-			3. Modify the information if necessary. <br>
+			3. Modify the data fields if necessary. <br>
 			4. Click "Confirm" and save it in Google Calendar. <br>
 			<br>
 			<div id="reminder">
 				<p>
-					- Better experience in Gmail, Hotmail and Yahoo Mail <br>
 					- Language of Email content: English <br>
-					- Only support single event creation <br>
+					- Recognize the US date format <br>
+					- Recognize the US/Canadian address <br>
+					- Recognize common holidays.<br>
 					<br>
 				</p>
 			</div>

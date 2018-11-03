@@ -112,12 +112,12 @@ function addEvent() {
 
   //statusDisplay.innerHTML = url;
   //add to history
-  if (location !== "") {
-    saveHistory(location, url);
-  } else {
+  // if (location !== "") {
+  //   saveHistory(location, url);
+  // } else {
     window.open(url);
     window.close();
-  }
+  // }
   //window.alert(321);
   //window.open(url);
   //window.close();
