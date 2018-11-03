@@ -2,6 +2,8 @@ var maildate = new Date();
 var mailtitle = "";
 var details = {};
 var mailtext = "";
+var use_date_uk = false;
+
 // A generic onclick callback function.
 function onClickHandler(info, tab) {
 
@@ -13,14 +15,18 @@ function onClickHandler(info, tab) {
   // This will get called by the content script we execute in
   // the tab as a result of the user pressing the browser action.
   chrome.runtime.onMessage.addListener(function (info) {
-    if (info.date != "None") {
+    if (info.date != undefined) {
       //window.alert(info.date);
       maildate = new Date(info.date);
     }
-    if (info.title.length > 150)
-      info.title = info.title.substring(0, 150);
-    if (info.title != "None")
+    if (info.title != undefined) {
+      if (info.title.length > 150)
+        info.title = info.title.substring(0, 150);
       mailtitle = info.title;
+    }
+    if (info.date_uk != undefined) {
+      use_date_uk = info.date_uk;
+    }
   });
 
   //mailtext = info.selectionText;
@@ -94,7 +100,7 @@ function CreateTab() {
     maildate = new Date();
   }
 
-  var result = getDate(tempMailtext, maildate);
+  var result = getDate(tempMailtext, maildate, use_date_uk);
   //details.text = result[0]+" "+result[1]+" score "+result[2]+" "+result[3];
   var tempMonth, tempDate;
   tempMonth = result[0].getMonth() + 1;
@@ -172,6 +178,12 @@ chrome.runtime.onInstalled.addListener(function () {
         console.log("Got expected error: " + chrome.extension.lastError.message);
       }
     });
+
+  chrome.storage.sync.get({
+    date_uk: false
+  }, function (items) {
+    use_date_uk = items.date_uk;
+  })
 });
 
 

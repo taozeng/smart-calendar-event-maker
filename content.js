@@ -1,13 +1,9 @@
 //get the email date and title
 
-var additionalInfo = {
-  "title": "None",
-  "date": "None"
-};
+var additionalInfo = {};
 
 function getAdditionalInfo() {
 
-  additionalInfo.date = "None";
   additionalInfo.title = document.title;
   if (document.URL.indexOf("mail.google.com") > -1) {
 
@@ -56,6 +52,5 @@ function getAdditionalInfo() {
 
   return additionalInfo;
 }
-
 
 chrome.runtime.sendMessage(getAdditionalInfo());

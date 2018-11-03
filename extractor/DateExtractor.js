@@ -36,6 +36,7 @@ var dateArr;
 //changed
 var timeArr;
 var POSresult = " ";
+var use_date_uk;
 
 //changed
 function MyTime(inputHour1, inputMinute1, startPos, endPos, timeScore, format) {
@@ -62,7 +63,7 @@ function MyDate(inputDate_temp, startPosition, endPosition, score_temp) {
 
 //changed
 //constructor
-function DateExtractor(inputTaggedWords, mailDate) {
+function DateExtractor(inputTaggedWords, mailDate, date_uk) {
 	//taggedWords is the output of POS(e.g taggedWords[0][0] is the first word, taggedWords[0][1] is the POS of first word)
 	taggedWords = inputTaggedWords;
 	//alert(taggedWords);
@@ -75,7 +76,7 @@ function DateExtractor(inputTaggedWords, mailDate) {
 	dateArr = [];
 	timeArr = [];
 	holiday = getHolidays();
-
+	use_date_uk = date_uk;
 }
 
 //changed
@@ -124,56 +125,60 @@ DateExtractor.prototype.extractDate = function () {
 //changed
 function extractDifferentFormat() {
 	for (var i = 0; i < taggedWords.length; i++) {
+		
 		// extract different kind of date format and push it to an array
-		//11/22/1992
-		if (dateExtract("MM+/+DD+/+YYYY", i)) {
-			if (isValidDate(taggedWords[i + 2][0] + "/" + taggedWords[i][0] + "/" + taggedWords[i + 4][0])) {
-				dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i][0] - 1, taggedWords[i + 2][0]), i, i + 4, 20));
-				i = i + 4;
-				continue;
+		if (!use_date_uk) {
+			//11/22/1992
+			if (dateExtract("MM+/+DD+/+YYYY", i)) {
+				if (isValidDate(taggedWords[i + 2][0] + "/" + taggedWords[i][0] + "/" + taggedWords[i + 4][0])) {
+					dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i][0] - 1, taggedWords[i + 2][0]), i, i + 4, 20));
+					i = i + 4;
+					continue;
+				}
 			}
-		}
-		//11-22-1992
-		if (dateExtract("MM+-+DD+-+YYYY", i)) {
-			if (isValidDate(taggedWords[i + 2][0] + "/" + taggedWords[i][0] + "/" + taggedWords[i + 4][0])) {
-				dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i][0] - 1, taggedWords[i + 2][0]), i, i + 4, 20));
+			//11-22-1992
+			if (dateExtract("MM+-+DD+-+YYYY", i)) {
+				if (isValidDate(taggedWords[i + 2][0] + "/" + taggedWords[i][0] + "/" + taggedWords[i + 4][0])) {
+					dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i][0] - 1, taggedWords[i + 2][0]), i, i + 4, 20));
 
-				i = i + 4;
-				continue;
+					i = i + 4;
+					continue;
+				}
+			}
+			//11.22.1992
+			if (dateExtract("MM+.+DD+.+YYYY", i)) {
+				if (isValidDate(taggedWords[i + 2][0] + "/" + taggedWords[i][0] + "/" + taggedWords[i + 4][0])) {
+					dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i][0] - 1, taggedWords[i + 2][0]), i, i + 4, 20));
+					i = i + 4;
+					continue;
+				}
 			}
 		}
-		//11.22.1992
-		if (dateExtract("MM+.+DD+.+YYYY", i)) {
-			if (isValidDate(taggedWords[i + 2][0] + "/" + taggedWords[i][0] + "/" + taggedWords[i + 4][0])) {
-				dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i][0] - 1, taggedWords[i + 2][0]), i, i + 4, 20));
-				i = i + 4;
-				continue;
+		else {
+			//22/11/1992
+			if (dateExtract("DD+/+MM+/+YYYY", i)) {
+				if (isValidDate(taggedWords[i][0] + "/" + taggedWords[i + 2][0] + "/" + taggedWords[i + 4][0])) {
+					dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i + 2][0] - 1, taggedWords[i][0]), i, i + 4, 20));
+					i = i + 4;
+					continue;
+				}
 			}
-		}
 
-		//22/11/1992
-		if (dateExtract("DD+/+MM+/+YYYY", i)) {
-			if (isValidDate(taggedWords[i][0] + "/" + taggedWords[i + 2][0] + "/" + taggedWords[i + 4][0])) {
-				dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i + 2][0] - 1, taggedWords[i][0]), i, i + 4, 20));
-				i = i + 4;
-				continue;
+			//22-11-1992
+			if (dateExtract("DD+-+MM+-+YYYY", i)) {
+				if (isValidDate(taggedWords[i][0] + "/" + taggedWords[i + 2][0] + "/" + taggedWords[i + 4][0])) {
+					dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i + 2][0] - 1, taggedWords[i][0]), i, i + 4, 20));
+					i = i + 4;
+					continue;
+				}
 			}
-		}
-
-		//22-11-1992
-		if (dateExtract("DD+-+MM+-+YYYY", i)) {
-			if (isValidDate(taggedWords[i][0] + "/" + taggedWords[i + 2][0] + "/" + taggedWords[i + 4][0])) {
-				dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i + 2][0] - 1, taggedWords[i][0]), i, i + 4, 20));
-				i = i + 4;
-				continue;
-			}
-		}
-		//22.11.1992
-		if (dateExtract("DD+.+MM+.+YYYY", i)) {
-			if (isValidDate(taggedWords[i][0] + "/" + taggedWords[i + 2][0] + "/" + taggedWords[i + 4][0])) {
-				dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i + 2][0] - 1, taggedWords[i][0]), i, i + 4, 20));
-				i = i + 4;
-				continue;
+			//22.11.1992
+			if (dateExtract("DD+.+MM+.+YYYY", i)) {
+				if (isValidDate(taggedWords[i][0] + "/" + taggedWords[i + 2][0] + "/" + taggedWords[i + 4][0])) {
+					dateArr.push(new MyDate(new Date(taggedWords[i + 4][0], taggedWords[i + 2][0] - 1, taggedWords[i][0]), i, i + 4, 20));
+					i = i + 4;
+					continue;
+				}
 			}
 		}
 
@@ -202,20 +207,24 @@ function extractDifferentFormat() {
 			}
 		}
 
-		//11/22
-		if (dateExtract("MM+/+DD", i)) {
-			if (isValidDate(taggedWords[i + 2][0] + "/" + taggedWords[i][0] + "/" + emailDate.getFullYear())) {
-				dateArr.push(new MyDate(new Date(emailDate.getFullYear(), taggedWords[i][0] - 1, taggedWords[i + 2][0]), i, i + 2, 20));
-				i = i + 2;
-				continue;
+		if (!use_date_uk) {
+			//11/22
+			if (dateExtract("MM+/+DD", i)) {
+				if (isValidDate(taggedWords[i + 2][0] + "/" + taggedWords[i][0] + "/" + emailDate.getFullYear())) {
+					dateArr.push(new MyDate(new Date(emailDate.getFullYear(), taggedWords[i][0] - 1, taggedWords[i + 2][0]), i, i + 2, 20));
+					i = i + 2;
+					continue;
+				}
 			}
 		}
-		//22/11
-		if (dateExtract("DD+/+MM", i)) {
-			if (isValidDate(taggedWords[i][0] + "/" + taggedWords[i + 2][0] + "/" + emailDate.getFullYear())) {
-				dateArr.push(new MyDate(new Date(emailDate.getFullYear(), taggedWords[i + 2][0] - 1, taggedWords[i][0]), i, i + 2, 20));
-				i = i + 2;
-				continue;
+		else {
+			//22/11
+			if (dateExtract("DD+/+MM", i)) {
+				if (isValidDate(taggedWords[i][0] + "/" + taggedWords[i + 2][0] + "/" + emailDate.getFullYear())) {
+					dateArr.push(new MyDate(new Date(emailDate.getFullYear(), taggedWords[i + 2][0] - 1, taggedWords[i][0]), i, i + 2, 20));
+					i = i + 2;
+					continue;
+				}
 			}
 		}
 

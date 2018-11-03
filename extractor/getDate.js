@@ -1,4 +1,4 @@
-function getDate(text, mailDate) {
+function getDate(text, mailDate, date_uk) {
 	//document.getElementById('message').value = "123";
 	//window.alert("test123");
 	/*text = "February 05 th  8th my. a.b 5-06-5 2/10/2011 (22-11-1992) hihi 10/12 31-4-2012   Bonaparte has been as profuse in his disposal of the Imperial"+
@@ -19,7 +19,7 @@ function getDate(text, mailDate) {
 	var inputTaggedWords = new POSTagger().tag(words);
 	var result = {};
 
-	var dateExtractor = new DateExtractor(inputTaggedWords, mailDate);
+	var dateExtractor = new DateExtractor(inputTaggedWords, mailDate, date_uk);
 
 	result = dateExtractor.extractDate();
 	//getHistory();

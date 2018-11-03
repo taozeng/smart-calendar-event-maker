@@ -1,4 +1,12 @@
 {
+    "name": "Smart Calendar Event Maker Plus",
+    "version": "1.1",
+    "description": "Add event to google calendar",
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "storage"
+    ],
     "background": {
         "persistent": false,
         "scripts": [
@@ -19,19 +27,15 @@
         "default_icon": "assets/icon_16.png",
         "default_popup": "setup.html"
     },
-    "description": "Add event to google calendar",
-    "icons": {
-        "128": "assets/icon_128.png",
-        "16": "assets/icon_16.png",
-        "48": "assets/icon_32.png"
+    "options_ui": {
+        "open_in_tab": false,
+        "page": "options.html"
     },
-    "manifest_version": 2,
-    "name": "Smart Calendar Event Maker Plus",
-    "permissions": [
-        "contextMenus",
-        "activeTab",
-        "storage"
-    ],
-    "update_url": "https://clients2.google.com/service/update2/crx",
-    "version": "1.0"
+    
+    "icons": {
+        "16": "assets/icon_16.png",
+        "48": "assets/icon_32.png",
+        "128": "assets/icon_128.png"
+    },
+    "manifest_version": 2
 }
