@@ -74,6 +74,8 @@ function DateExtractor(inputTaggedWords, mailDate) {
 	endDate = mailDate;
 	dateArr = [];
 	timeArr = [];
+	holiday = getHolidays();
+
 }
 
 //changed
@@ -398,9 +400,9 @@ function extractDifferentFormat() {
 		//holiday date (e.g. Christmas)
 		var holidayPos = isHoliday(i);
 		if (holidayPos >= 0) {
-			var splitHolidayDate = holiday[holidayPos][1].split("/");
-			if (isValidDate(splitHolidayDate[1] + "/" + splitHolidayDate[0] + "/" + emailDate.getFullYear())) {
-				dateArr.push(new MyDate(new Date(emailDate.getFullYear(), splitHolidayDate[0] - 1, splitHolidayDate[1]), i, i, 5));
+			var splitHolidayDate = getHolidayDateString(emailDate.getFullYear(), holiday[holidayPos]).split("/");
+			if (isValidDate(splitHolidayDate[1] + "/" + splitHolidayDate[0] + "/" + splitHolidayDate[2])) {
+				dateArr.push(new MyDate(new Date(splitHolidayDate[2], splitHolidayDate[0] - 1, splitHolidayDate[1]), i, i, 5));
 				dateArr[dateArr.length - 1].dateFormat = 4;
 				i = i + 1;
 				continue;
@@ -826,7 +828,7 @@ function extractTimeRange() {
 function isHoliday(i) {
 	for (var j = 0; j < holiday.length; j++) {
 		var check = true;
-		var splitHoliday = holiday[j][0].split(" ");
+		var splitHoliday = holiday[j].split(" ");
 		if (splitHoliday.length + i > taggedWords.length)
 			continue;
 		for (var k = 0; k < splitHoliday.length; k++) {

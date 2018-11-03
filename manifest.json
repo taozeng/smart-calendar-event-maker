@@ -12,6 +12,7 @@
             "extractor/POSTagger.js",
             "extractor/DateExtractor.js",
             "extractor/VenueExtractor.js",
+            "extractor/holiday.js",
             "fileIO.js"
         ]
     },
