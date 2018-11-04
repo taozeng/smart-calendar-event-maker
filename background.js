@@ -8,21 +8,18 @@ var use_date_uk = false;
 function onClickHandler(info, tab) {
 
   maildate = new Date();
-  mailtitle = "";
+  mailtitle = document.title;
 
-  chrome.tabs.executeScript(null, { file: "content.js" });
+  chrome.tabs.executeScript({ file: "content.js" });
 
   // This will get called by the content script we execute in
   // the tab as a result of the user pressing the browser action.
   chrome.runtime.onMessage.addListener(function (info) {
     if (info.date != undefined) {
-      //window.alert(info.date);
       maildate = new Date(info.date);
     }
     if (info.title != undefined) {
-      if (info.title.length > 150)
-        info.title = info.title.substring(0, 150);
-      mailtitle = info.title;
+      mailtitle = (info.title.length > 150) ? info.title.substring(0, 150) : info.title;
     }
     if (info.date_uk != undefined) {
       use_date_uk = info.date_uk;
@@ -39,7 +36,6 @@ function onClickHandler(info, tab) {
     if (mailtext === "") {
       mailtext = info.selectionText;
     }
-
   });
 
   //call extractor function

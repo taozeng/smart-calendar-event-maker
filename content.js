@@ -3,53 +3,31 @@
 var additionalInfo = {};
 
 function getAdditionalInfo() {
-
-  additionalInfo.title = document.title;
   if (document.URL.indexOf("mail.google.com") > -1) {
-
-    //var 
-    var dateString = document.getElementsByClassName('g3')[0].title;
-    // dateString = dateString.substring(5, 17);
-    // dateString = dateString.replace(",", "");
-    additionalInfo.date = dateString;
     additionalInfo.title = document.title;
+    // Oct 2, 2018, 7:00 AM
+    let dateString = document.getElementsByClassName('g3')[0].title;
+    let strs = dateString.split(",");
+    additionalInfo.date = strs[0] + ", " + strs[1];
   }
-  // else if (document.URL.indexOf("mail.live.com") > -1) {
-  //   additionalInfo.date = document.getElementsByClassName('Date TextSizeSmall')[0].innerHTML;
-  //   additionalInfo.date = additionalInfo.date.trim();
-
-  //   //window.alert(additionalInfo.date);
-  //   if (additionalInfo.date.length < 8) {
-
-  //     var temp = new Date();
-  //     tempMonth = temp.getMonth() + 1;
-  //     tempDate = temp.getDate();
-  //     if (tempMonth.toString().length < 2) {
-  //       tempMonth = "0" + tempMonth;
-  //     }
-  //     if (tempDate.toString().length < 2) {
-  //       tempDate = "0" + tempDate;
-  //     }
-  //     additionalInfo.date = tempDate + "/" + tempMonth + "/" + temp.getFullYear();
-  //   }
-
-  //   additionalInfo.title = document.getElementsByClassName('rmSubject')[0].innerHTML;
-  //   additionalInfo.title = additionalInfo.title.trim();
-  //   var i = additionalInfo.title.length - 35;
-  //   if (i > 34) {
-  //     additionalInfo.title = additionalInfo.title.substring(34, i);
-  //   }
-  // }
-  // else if (document.URL.indexOf("mail.yahoo.com") > -1) {
-
-  //   var j = document.getElementsByClassName('short').length;
-
-  //   additionalInfo.date = document.getElementsByClassName('short')[j - 1].title;
-  //   //window.alert(additionalInfo.date);
-  //   j = document.getElementsByClassName('thread-subject').length;
-  //   additionalInfo.title = document.getElementsByClassName('thread-subject')[j - 1].title;
-  // }
-
+  else if (document.URL.indexOf("outlook.live.com") > -1) {
+    let main = document.querySelector('[role="main"]');
+    if (main != null)  {
+      additionalInfo.title = main.querySelector('[role="heading"]').title;
+      let buttons = main.querySelectorAll('[role="button"]');
+      if (buttons.length == 4) {
+        // Fri 11/02/2018, 8:10 PM
+        let dateString = buttons[1].nextElementSibling.innerText;
+        additionalInfo.date = dateString.split(",")[0];
+      }
+    }
+  }
+  else if (document.URL.indexOf("mail.yahoo.com") > -1) {
+    additionalInfo.title = document.querySelector('[data-test-id="message-group-subject-text"]').innerText;
+    // Nov 2 at 6:11 AM
+    let dateString = document.querySelector('[data-test-id="message-date"] > span').innerText;
+    additionalInfo.date = dateString.split("at")[0] + ", " + new Date().getFullYear();
+  }
   return additionalInfo;
 }
 
