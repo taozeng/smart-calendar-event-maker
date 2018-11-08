@@ -1,7 +1,7 @@
-# Smart Calendar Event Maker Plus
+# Smart Calendar Event Plus
 Create Google Calendar event from the selected text (based on Smart Calendar Event Maker). 
 
-This extension will intelligently extract the date, time and location information from the selected text and generate a Google Calendar event for you. 
+This extension will intelligently extract the date, time and location information from the selected text and create a Google Calendar event for you. 
 
 Features:
 
