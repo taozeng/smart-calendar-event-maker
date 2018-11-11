@@ -8,7 +8,7 @@ var use_date_uk = false;
 function onClickHandler(info, tab) {
 
   maildate = new Date();
-  mailtitle = document.title;
+  mailtitle = tab.title;
 
   chrome.tabs.executeScript({ file: "content.js" });
 
