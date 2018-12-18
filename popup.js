@@ -96,10 +96,12 @@ function addEvent() {
   var end = endDate + "T" + endTime + "00";
 
   //message symbol convert
+  message = message.replace(/%/g, "%25");
+  title = title.replace(/%/g, "%25");
+  location = location.replace(/%/g, "%25");
   message = message.replace(/&/g, "%26");
   title = title.replace(/&/g, "%26");
   location = location.replace(/&/g, "%26");
-
 
   var url = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + title + "&location=" + location + "&dates=" + start + "/" + end + "&trp=true&details=" + message;
 
