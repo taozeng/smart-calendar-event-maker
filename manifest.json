@@ -1,6 +1,6 @@
 {
     "name": "Smart Calendar Event Plus",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "description": "Add event to google calendar",
     "permissions": [
         "contextMenus",

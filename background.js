@@ -26,17 +26,7 @@ function onClickHandler(info, tab) {
     }
   });
 
-  //mailtext = info.selectionText;
-
-  chrome.tabs.executeScript({
-    code: "window.getSelection().toString();"
-  }, function (selection) {
-    // selected contains text including line breaks
-    mailtext = selection[0];
-    if (mailtext === "") {
-      mailtext = info.selectionText;
-    }
-  });
+  mailtext = info.selectionText;
 
   //call extractor function
   details = {};
@@ -46,11 +36,7 @@ function onClickHandler(info, tab) {
   details.id = info.menuItemId;
   details.pageUrl = info.pageUrl;
 
-  // chrome.alarms.create({ delayInMinutes: 0.01 });
-  //CreateTab(details);
-  setTimeout(function () {
-    CreateTab(details);
-  }, 200);
+  CreateTab(details);
 }
 
 
@@ -129,7 +115,7 @@ function CreateTab() {
   details.startTime = result[2];
   details.endTime = result[3];
 
-  chrome.tabs.create({ url: chrome.extension.getURL('popup.html'), active: false }, function (tab) {
+  chrome.tabs.create({ url: chrome.extension.getURL('popup.html'), active: true }, function (tab) {
     // After the tab has been created, open a window to inject the tab
     chrome.windows.create(
       {
@@ -138,8 +124,11 @@ function CreateTab() {
         type: 'popup',
         focused: true
         // incognito, top, left, ...
-      }, function () {
-        chrome.runtime.sendMessage({ details: details }, function (response) { });
+      }, function (window) {
+        console.log(details.text)
+        setTimeout(function() {
+          chrome.runtime.sendMessage({ details: details }, function (response) { });
+        }, 200)
       });
   });
 }
